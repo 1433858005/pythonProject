@@ -17,7 +17,7 @@ def mainmm():
             for j in range(10):
                 a = d.find_elements_by_class_name("index_wordName__1lkbV")[j].text
                 b = d.find_elements_by_class_name("index_bottom__XLoPQ")[j].text
-                data = bytes(urllib.parse.urlencode({"username": "中考," + a + "," + b}), encoding="utf-8")
+                data = bytes(urllib.parse.urlencode({"username": "A级," + a + "," + b}), encoding="utf-8")
                 response = urllib.request.urlopen("http://localhost:8080//b", data=data)
                 print(response.read().decode('utf-8'))
                 time.sleep(0.1)
