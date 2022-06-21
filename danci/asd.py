@@ -1,2 +1,4 @@
-i='e3e194bf696b2822bc340e13d9942515.f42537ada8739dcd1b57057bda044e9d.mp3'
+i = 'https://media-audio1.baydn.com/'
+ii = 'https://media-audio1.baydn.com/us/2d64ef18127c52d86d02b24fa90116be.mp3'
 print(len(i))
+print(ii[30:34])

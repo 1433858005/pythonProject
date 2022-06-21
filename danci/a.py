@@ -1,15 +1,12 @@
 import threading
 import time
-import urllib.parse
-import urllib.request
-from tokenize import String
 
 from selenium import webdriver
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common.by import By
-
 
 def mainmm(p):
+    print(p)
+    shujuku = '六级'
     global urllib
     aa = []
     for i in range(int(aq)):
@@ -18,13 +15,16 @@ def mainmm(p):
             for j in range(10):
                 a = d.find_elements_by_class_name("index_wordName__1lkbV")[j].text
                 b = d.find_elements_by_class_name("index_bottom__XLoPQ")[j].text
+                if len(b) > 100:
+                    b = b[0:100]
                 mp = "return document.querySelectorAll('.index_top__1grCv')[" + str(
                     j) + "].children[1]." + p + ".children.props.url"
                 c = d.execute_script(mp)
                 if c != "":
                     print(c)
+
                     data = bytes(
-                        urllib.parse.urlencode({"username": "七年级上,panpan" + a + ",panpan" + b + ",panpan" + c}),
+                        urllib.parse.urlencode({"username": shujuku + ",panpan" + a + ",panpan" + b + ",panpan" + c}),
                         encoding="utf-8")
                     response = urllib.request.urlopen("http://localhost:8080//nb", data=data)
                     print(response.read().decode('utf-8'))
@@ -33,7 +33,7 @@ def mainmm(p):
                     print(b + 'mp3有空')
                     c = '没有MP3'
                     data = bytes(
-                        urllib.parse.urlencode({"username": "七年级上,panpan" + a + ",panpan" + b + ",panpan" + c}),
+                        urllib.parse.urlencode({"username": shujuku + ",panpan" + a + ",panpan" + b + ",panpan" + c}),
                         encoding="utf-8")
                     response = urllib.request.urlopen("http://localhost:8080//nb", data=data)
                     print(response.read().decode('utf-8'))
@@ -43,8 +43,10 @@ def mainmm(p):
             aa.clear()
             d.execute_script(xia)
         except:
-            print(45)
-            # print(i)
+            print("出现异常")
+            # pp = input('是否重新运行')
+            # if pp == 1:
+            #     mainmm(p)
 
     mp = "return document.querySelectorAll('.index_top__1grCv')[0].children[1]." + p + ".children.props.url"
     pp = d.execute_script(mp)
@@ -81,11 +83,13 @@ if __name__ == "__main__":
     time.sleep(1)
     d.find_elements_by_class_name("index_navItemContent__mA21b")[3].click()
     time.sleep(1)
+    name = 'return Object.keys(document.querySelectorAll(".index_top__1grCv")[0].children[1])[1]'
+    q = d.execute_script(name)
+    print(q)
     p = input('请输入密码:')
-    print(p)
     # 总页数
     aq = d.find_element_by_xpath('//*[@id="root"]/div/div[1]/div/div/div[2]/div[2]/div[11]/div/ul/li[8]').text
     # 下一页
     xia = 'document.querySelectorAll(".index_pageContainer__2l7E1")[0].children[document.querySelectorAll(".index_pageContainer__2l7E1")[0].children.length-1].click()'
     t1 = threading.Thread(target=mainmm)
-    mainmm(p)
+    mainmm(q)

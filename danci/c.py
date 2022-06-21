@@ -67,4 +67,3 @@ if __name__ == "__main__":
     xia = 'document.querySelectorAll(".index_pageContainer__2l7E1")[0].children[document.querySelectorAll(".index_pageContainer__2l7E1")[0].children.length-1].click()'
     t1 = threading.Thread(target=mainmm)
     mainmm()
-
